@@ -54,25 +54,25 @@ export function AddTransactionForm({
     defaultValues:
       editMode && initialData
         ? {
-            type: initialData.type,
-            amount: initialData.amount.toString(),
-            description: initialData.description,
-            accountId: initialData.accountId,
-            category: initialData.category,
-            date: new Date(initialData.date),
-            isRecurring: initialData.isRecurring,
-            ...(initialData.recurringInterval && {
-              recurringInterval: initialData.recurringInterval,
-            }),
-          }
+          type: initialData.type,
+          amount: initialData.amount.toString(),
+          description: initialData.description,
+          accountId: initialData.accountId,
+          category: initialData.category,
+          date: new Date(initialData.date),
+          isRecurring: initialData.isRecurring,
+          ...(initialData.recurringInterval && {
+            recurringInterval: initialData.recurringInterval,
+          }),
+        }
         : {
-            type: "EXPENSE",
-            amount: "",
-            description: "",
-            accountId: accounts.find((ac) => ac.isDefault)?.id,
-            date: new Date(),
-            isRecurring: false,
-          },
+          type: "EXPENSE",
+          amount: "",
+          description: "",
+          accountId: accounts.find((ac) => ac.isDefault)?.id,
+          date: new Date(),
+          isRecurring: false,
+        },
   });
 
   const {
@@ -118,7 +118,7 @@ export function AddTransactionForm({
       reset();
       router.push(`/account/${transactionResult.data.accountId}`);
     }
-  }, [transactionResult, transactionLoading, editMode]);
+  }, [transactionResult, transactionLoading, editMode, reset, router]);
 
   const type = watch("type");
   const isRecurring = watch("isRecurring");
